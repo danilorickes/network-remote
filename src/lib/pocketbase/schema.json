@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-10-06T20:45:05.906Z",
+  "collections": [
+    {
+      "name": "users",
+      "type": "auth",
+      "apiRules": {
+        "list": "id = @request.auth.id",
+        "view": "id = @request.auth.id",
+        "create": "",
+        "update": "id = @request.auth.id",
+        "delete": "id = @request.auth.id"
+      },
+      "fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "avatar",
+          "type": "file",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "created",
+          "type": "autodate",
+          "required": false,
+          "system": false,
+          "autodateTriggers": ["onCreate"]
+        },
+        {
+          "name": "updated",
+          "type": "autodate",
+          "required": false,
+          "system": false,
+          "autodateTriggers": ["onCreate", "onUpdate"]
+        }
+      ],
+      "indexes": [
+        "CREATE UNIQUE INDEX `idx_tokenKey__pb_users_auth_` ON `users` (`tokenKey`)",
+        "CREATE UNIQUE INDEX `idx_email__pb_users_auth_` ON `users` (`email`) WHERE `email` != ''"
+      ]
+    },
+    {
+      "name": "remote_support_sessions",
+      "type": "base",
+      "apiRules": {
+        "list": "@request.auth.id != '' && technician_id = @request.auth.id",
+        "view": "@request.auth.id != '' && technician_id = @request.auth.id",
+        "create": "@request.auth.id != ''",
+        "update": "@request.auth.id != '' && technician_id = @request.auth.id",
+        "delete": null
+      },
+      "fields": [
+        {
+          "name": "remote_id",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "client_name",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "client_email",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "client_id",
+          "type": "relation",
+          "required": false,
+          "system": false,
+          "collectionRef": "users"
+        },
+        {
+          "name": "is_ad_hoc",
+          "type": "bool",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "os_number",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "technician_id",
+          "type": "relation",
+          "required": true,
+          "system": false,
+          "collectionRef": "users"
+        },
+        {
+          "name": "started_at",
+          "type": "date",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "ended_at",
+          "type": "date",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "required": true,
+          "system": false
+        },
+        {
+          "name": "has_file_transfer",
+          "type": "bool",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "transfer_log",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "observations",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "required": true,
+          "system": false,
+          "selectValues": ["em_andamento", "concluido"]
+        },
+        {
+          "name": "created",
+          "type": "autodate",
+          "required": false,
+          "system": false,
+          "autodateTriggers": ["onCreate"]
+        },
+        {
+          "name": "updated",
+          "type": "autodate",
+          "required": false,
+          "system": false,
+          "autodateTriggers": ["onCreate", "onUpdate"]
+        }
+      ],
+      "indexes": [
+        "CREATE INDEX idx_remote_status ON remote_support_sessions (status)",
+        "CREATE INDEX idx_remote_technician ON remote_support_sessions (technician_id)",
+        "CREATE INDEX idx_remote_started ON remote_support_sessions (started_at)",
+        "CREATE INDEX idx_remote_id ON remote_support_sessions (remote_id)"
+      ]
+    }
+  ]
+}
