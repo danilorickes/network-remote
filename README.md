@@ -1,131 +1,75 @@
-# Projeto Criado com o Skip
+# Network Remote — NetworK Infra
 
-Este projeto foi criado de ponta a ponta com o [Skip](https://goskip.dev).
+Módulo de suporte e assistência técnica remota integrado ao ecossistema NetworK Soluções / NetworK Infra.
 
-## 🚀 Stack Tecnológica
+## 🚀 Sobre o Projeto
 
-- **React 19** - Biblioteca JavaScript para construção de interfaces
-- **Vite** - Build tool extremamente rápida
-- **TypeScript** - Superset tipado do JavaScript
-- **Shadcn UI** - Componentes reutilizáveis e acessíveis
-- **Tailwind CSS** - Framework CSS utility-first
-- **React Router** - Roteamento para aplicações React
-- **React Hook Form** - Gerenciamento de formulários performático
-- **Zod** - Validação de schemas TypeScript-first
-- **Recharts** - Biblioteca de gráficos para React
+O **Network Remote** é uma solução completa para gestão de atendimentos remotos, emissão de códigos de sessão (Remote ID) para clientes, e console operacional em tempo real para a equipe de técnicos e especialistas de TI.
 
-## 📋 Pré-requisitos
+### Principais Funcionalidades
 
-- Node.js 18+
-- npm
+- **Portal do Cliente (`/suporte`)**:
+  - Geração de Remote ID com código numérico seguro de 9 dígitos.
+  - Interface estilo cliente desktop com status de conexão em tempo real.
+  - Transferência de arquivos e registro de histórico de sessão.
+  - Acesso direto ao canal de atendimento técnico e solicitação de suporte.
 
-## 🔧 Instalação
+- **Console do Técnico (`/tecnico`)**:
+  - Painel operacional protegido por autenticação.
+  - Monitoramento de sessões ativas e fila de espera.
+  - Vinculação de Ordens de Serviço (O.S.) e registro de observações técnicas.
+  - Sincronização em tempo real via PocketBase Realtime subscriptions.
+  - Histórico completo de sessões com status `em_andamento` e `concluido`.
 
-```bash
-npm install
+- **Autenticação e Segurança**:
+  - Fluxo completo de autenticação (Login, Registro, Recuperação de Senha e Validação de E-mail).
+  - Rotas protegidas com contexto de usuário (`AuthContext`).
+
+## 🛠️ Stack Tecnológica
+
+- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS
+- **Componentes**: Radix UI / Shadcn UI, Lucide Icons
+- **Roteamento**: React Router v7
+- **Backend / BaaS**: PocketBase (Skip Cloud)
+- **Tempo Real**: PocketBase Realtime Subscriptions
+- **Validação de Formulários**: React Hook Form + Zod
+
+## 📁 Estrutura de Diretórios
+
+```
+.
+├── pocketbase/
+│   └── migrations/             # Migrações do banco PocketBase
+├── public/                     # Ativos estáticos e logos
+├── src/
+│   ├── assets/                 # Símbolo oficial da marca NetworK
+│   ├── components/             # Componentes modulares (Layout, Logo, Mockups)
+│   ├── config/                 # Configurações do Network Remote
+│   ├── contexts/               # Provedor de autenticação (AuthContext)
+│   ├── hooks/                  # Hooks customizados (useRealtime, useToast)
+│   ├── lib/                    # Clientes de API e utilitários
+│   ├── pages/                  # Páginas da aplicação (Index, Suporte, Técnico, etc.)
+│   └── services/               # Serviços de dados (remoteSessionsService)
+└── package.json
 ```
 
-## 💻 Scripts Disponíveis
-
-### Desenvolvimento
+## 💻 Desenvolvimento Local
 
 ```bash
+# Instalar dependências
+npm install
+
 # Iniciar servidor de desenvolvimento
 npm start
 # ou
 npm run dev
-```
 
-Abre a aplicação em modo de desenvolvimento em [http://localhost:5173](http://localhost:5173).
-
-### Build
-
-```bash
-# Build para produção
-npm run build
-
-# Build para desenvolvimento
-npm run build:dev
-```
-
-Gera os arquivos otimizados para produção na pasta `dist/`.
-
-### Preview
-
-```bash
-# Visualizar build de produção localmente
-npm run preview
-```
-
-Permite visualizar a build de produção localmente antes do deploy.
-
-### Linting e Formatação
-
-```bash
-# Executar linter
+# Executar linting e validação
 npm run lint
 
-# Executar linter e corrigir problemas automaticamente
-npm run lint:fix
-
-# Formatar código com Oxfmt
-npm run format
-```
-
-## 📁 Estrutura do Projeto
-
-```
-.
-├── src/              # Código fonte da aplicação
-├── public/           # Arquivos estáticos
-├── dist/             # Build de produção (gerado)
-├── node_modules/     # Dependências (gerado)
-└── package.json      # Configurações e dependências do projeto
-```
-
-## 🎨 Componentes UI
-
-Este template inclui uma biblioteca completa de componentes Shadcn UI baseados em Radix UI:
-
-- Accordion
-- Alert Dialog
-- Avatar
-- Button
-- Checkbox
-- Dialog
-- Dropdown Menu
-- Form
-- Input
-- Label
-- Select
-- Switch
-- Tabs
-- Toast
-- Tooltip
-- E muito mais...
-
-## 📝 Ferramentas de Qualidade de Código
-
-- **TypeScript**: Tipagem estática
-- **Oxlint**: Linter extremamente rápido
-- **Oxfmt**: Formatação automática de código
-
-## 🔄 Workflow de Desenvolvimento
-
-1. Instale as dependências: `npm install`
-2. Inicie o servidor de desenvolvimento: `npm start`
-3. Faça suas alterações
-4. Verifique o código: `npm run lint`
-5. Formate o código: `npm run format`
-6. Crie a build: `npm run build`
-7. Visualize a build: `npm run preview`
-
-## 📦 Build e Deploy
-
-Para criar uma build otimizada para produção:
-
-```bash
+# Gerar build de produção
 npm run build
 ```
 
-Os arquivos otimizados serão gerados na pasta `dist/` e estarão prontos para deploy.
+---
+*Desenvolvido para NetworK Soluções — Módulo Network Remote.*
