@@ -84,8 +84,8 @@ export const NETWORK_REMOTE_CONFIG: RemoteConfig = {
   serverPublicKey: 'TODO_CHAVE_PUBLICA_RUSTDESK_CLAUDIO',
 
   // Contato oficial de atendimento e segurança
-  contactPhone: '(11) 4003-8921',
-  contactWhatsApp: '5511999998921',
-  contactWhatsAppFormatted: '(11) 99999-8921',
+  contactPhone: '(53) 98431-0395',
+  contactWhatsApp: '5553984310395',
+  contactWhatsAppFormatted: '(53) 98431-0395',
   supportHours: 'Segunda a Sexta, das 08h às 18h',
 }
